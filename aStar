@@ -1,0 +1,7 @@
+import sys
+
+class node:
+    def __init__(self):
+        self.h = 0
+        self.f = 0
+        self.s = 0
