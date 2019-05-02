@@ -16,17 +16,15 @@ class Graph:
         self.edges = dict() #nodes are key, example-node 4:edges 4-5,4-6 node 5:5-4,4-6)
 
     def add_node(self, node):
-        #Adding the Node Object
+        assert ( isinstance(node,Node) )
         self.nodes.add(node)
 
-    def add_edge(self, from_node, to_node):
-        edge = Edge(to_node)
-        if from_node.label in self.edges:
-            from_node_edges = self.edges[from_node.label]
-        else:
-            self.edges[from_node.label] = dict()
-            from_node_edges = self.edges[from_node.label]
-        from_node_edges[to_node.label] = edge
+    def add_edge(self, e):
+        assert ( isinstance(e,Edge) )
+        v=e.either
+        w=e.other
+        self.edges[v]=e
+        self.edges[w]=e
 
 class Node:
     def __init__(self, value,xcord,ycord):
@@ -36,12 +34,26 @@ class Node:
 
 class Edge:
     def __init__(self, node1,node2 ):
-        #we can take this part out afterwards
-        #if not isinstance(node1,Node) or not isinstance(node2,Node):
-           # raise ValueError("Node not passed")
         self.weight=distance(node1.xcord,node1.ycord,node2.xcord,node2.ycord)
         self.node1=node1
         self.node2=node2
+        
+    def either(self):
+        return self.node1
 
+    def other(self,vertex):
+        if vertex == self.node1 :
+            return self.node2
+        else:
+            return self.node1
+    def compareTo(self,that ):
+        assert( isinstance(that,Edge))
+
+        if self.weight < that.weight():
+            return -1
+        elif self.weight > that.weight :
+            return 1
+        else:
+            return 0
 
 
