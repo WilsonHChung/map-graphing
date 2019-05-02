@@ -43,7 +43,7 @@ class Edge:
         #we can take this part out afterwards
         #if not isinstance(node1,Node) or not isinstance(node2,Node):
            # raise ValueError("Node not passed")
-        weight=distance(node1.xcord,node1.ycord,node2.xcord,node2.ycord)
+        self.weight=distance(node1.xcord,node1.ycord,node2.xcord,node2.ycord)
         self.node1=node1
         self.node2=node2
 
