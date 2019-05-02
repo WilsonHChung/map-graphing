@@ -41,7 +41,14 @@ class Edge:
         self.weight=distance(node1.xcord,node1.ycord,node2.xcord,node2.ycord)
         self.node1=node1
         self.node2=node2
-        
+
+    def distance(x1, y1, x2, y2):
+        dx = x2 - x1
+        dy = y2 - y1
+        dsquared = dx ** 2 + dy ** 2
+        result = dsquared ** 0.5
+        return result
+
     def either(self):
         return self.node1
 
@@ -73,8 +80,8 @@ if __name__ == '__main__':
         print("adding Node",i, "X cord ",xcord ,"Y cord ", ycord)
     #creating like 10 random edges
     for i in range(10):
-        a=graph.nodes[random.randint(1,10)]
-        b=graph.nodes[random.randint(1,10)]
+        a=graph.nodes[random.randint(1,9)]
+        b=graph.nodes[random.randint(1,9)]
         myEdge=Edge(a,b)
         graph.add_edge( myEdge )
         print("adding Edge",a.val,"-",b.val," weight-",myEdge.weight )
