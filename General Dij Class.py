@@ -23,8 +23,8 @@ class Graph:
 
     def add_edge(self, e):
         assert ( isinstance(e,Edge) )
-        v=e.either
-        w=e.other
+        v=e.either()
+        w=e.other(v)
         self.edges[v]=e
         self.edges[w]=e
         #node object is the key, not node value
@@ -53,7 +53,6 @@ class Edge:
 
     def compareTo(self,that ):
         assert( isinstance(that,Edge))
-
         if self.weight < that.weight():
             return -1
         elif self.weight > that.weight :
@@ -74,12 +73,12 @@ if __name__ == '__main__':
         print("adding Node",i, "X cord ",xcord ,"Y cord ", ycord)
     #creating like 10 random edges
     for i in range(10):
-        a=graph.nodes[random.randint(1,9)]
-        b=graph.nodes[random.randint(1,9)]
+        a=graph.nodes[random.randint(1,10)]
+        b=graph.nodes[random.randint(1,10)]
         myEdge=Edge(a,b)
         graph.add_edge( myEdge )
         print("adding Edge",a.val,"-",b.val," weight-",myEdge.weight )
-    for x in graph.edges:
-        print(x.either())
+    for x,y in graph.edges:
+        print(x,y)
 
 
