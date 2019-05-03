@@ -16,6 +16,7 @@ class Graph:
         self.nodes = set() #Note, using list instead of a set, since Nodes have 3 members, also given data is known to be set
         self.edges = defaultdict(set) #nodes are key, example-node 4:edges 4-5,4-6 node 5:5-4,4-6)
         self.nodeCordinates= defaultdict(list) #key=node, value = xcord,ycord list
+        self.distances={}
         # 0:[3,4,5]
         # 1:[5,6,0]
 
@@ -31,6 +32,9 @@ class Graph:
         w=e.other(v)
         self.edges[v].add( w )
         self.edges[w].add( v )
+        #ADDING DISTANCES
+        self.distances[(w,v)]=e.weight
+        self.distances[v,w] =e.weight
         #add distance to weight in future
 
 #class Node:
