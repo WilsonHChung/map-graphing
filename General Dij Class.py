@@ -98,6 +98,9 @@ if __name__ == '__main__':
     for x in sorted(graph.edges):
         print(x,graph.edges[x])
     #sort hash table
+
+    print(graph.distances.values())
+    print(graph.distances.keys())
 #
 
 
