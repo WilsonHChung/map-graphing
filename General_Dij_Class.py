@@ -72,6 +72,7 @@ class Edge:
         else:
             return 0
 
+# Minimum-oriented indexed PQ implementation based on a binary heap
 
 class IndexMinPQ(object):
 
