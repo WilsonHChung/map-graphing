@@ -1,4 +1,4 @@
-from General_Dij_Class import IndexMinPQ, Graph
+from .General_Dij_Class import IndexMinPQ, Graph
 
 class DijkstraSP:
     def __init__(self, G, s):
