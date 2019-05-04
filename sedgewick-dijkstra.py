@@ -1,4 +1,5 @@
-import math
+from General_Dij_Class import IndexMinPQ, Graph
+
 class DijkstraSP:
     def __init__(self, G, s):
         self.edgeTo = [None]*G.V()
@@ -21,3 +22,4 @@ class DijkstraSP:
                 self.pq.decreaseKey(w, self.distTo[w])
             else:
                 self.pq.insert(w, self.distTo[w])
+
