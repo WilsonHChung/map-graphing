@@ -1,7 +1,5 @@
 import heapq
 import sys
-import unittest
-from collections import defaultdict
 import random
 import General_Dij_Class as Graph
 
@@ -26,7 +24,8 @@ def dijkstra(graph, source):
             weight = current_weight + graph.distances[min_node, v]
             if v not in visited or weight < visited[v]:
                 visited[v] = weight
-                heapq.heappush(h, (weight, v))
+                heapq.heappush(heep, (weight, v))
+                #path[v] = graph.edges[min_node]
                 path[v] = min_node
     return path
 
@@ -36,27 +35,28 @@ if __name__ == '__main__':
     for myNode in range(10):
         xcoord = random.randint(1, 20)
         ycoord = random.randint(1, 20)
-        #myNode = Node(i,xcoord, ycoord)
+        #myNode = Node(i, xcoord, ycoord)
         graph.add_node(myNode, xcoord, ycoord)
         #graph.add_node(Node(i, xcoord, ycoord))
         print("adding Node", myNode, "X coord ", xcoord, "Y coord ", ycoord)
     # creating like 10 random edges
     for i in range(10):
-        a=random.randint(1, 9) # some random node value
-        b=random.randint(1, 9)
-        c= random.randint(1, 9)
+        a = random.randint(1, 9)  # some random node value
+        b = random.randint(1, 9)
+        c = random.randint(1, 9)
         myEdge = Graph.Edge(a, b, graph)
         myEdge1 = Graph.Edge(a, c, graph)
         graph.add_edge(myEdge)
         graph.add_edge(myEdge1)
-        print("adding Edge", a, "-", b, " weight-", myEdge.weight )
+        print("adding Edge", a, "-", b, " weight-", myEdge.weight)
 
     for x in sorted(graph.edges):
         print(x, graph.edges[x])
-    #sort hash table
+    # sort hash table
 
     print(graph.distances.values())
     print(graph.distances.keys())
-
-    print(dijkstra(graph, 1 in graph.nodes))
+    bork = min(graph.nodes)
+    # we can retrieve the highest item in the nodes set
+    print(dijkstra(graph, max(graph.nodes)))
 
