@@ -1,8 +1,62 @@
-import Dheap
+import heapq
 import sys
 import unittest
 from collections import defaultdict
 import random
+import General_Dij_Class as Graph
+
+def dijkstra(graph, source):
+    visited = {source: 0}
+    heep = [(0, source)]
+    path = {}
+
+    nodes = set(graph.nodes)
+
+    while nodes and heep:
+        current_weight, min_node = heapq.heappop(heep)
+        try:
+            while min_node not in nodes:
+                current_weight, min_node = heapq.heappop(heep)
+        except IndexError:
+            break
+
+        nodes.remove(min_node)
+
+        for v in graph.edges[min_node]:
+            weight = current_weight + graph.distances[min_node, v]
+            if v not in visited or weight < visited[v]:
+                visited[v] = weight
+                heapq.heappush(h, (weight, v))
+                path[v] = min_node
+    return path
 
 if __name__ == '__main__':
-    print("first HELLOOOOO")
+    graph = Graph.Graph()
+    # adding nodes
+    for myNode in range(10):
+        xcoord = random.randint(1, 20)
+        ycoord = random.randint(1, 20)
+        #myNode = Node(i,xcoord, ycoord)
+        graph.add_node(myNode, xcoord, ycoord)
+        #graph.add_node(Node(i, xcoord, ycoord))
+        print("adding Node", myNode, "X coord ", xcoord, "Y coord ", ycoord)
+    # creating like 10 random edges
+    for i in range(10):
+        a=random.randint(1, 9) # some random node value
+        b=random.randint(1, 9)
+        c= random.randint(1, 9)
+        myEdge = Graph.Edge(a, b, graph)
+        myEdge1 = Graph.Edge(a, c, graph)
+        graph.add_edge(myEdge)
+        graph.add_edge(myEdge1)
+        print("adding Edge", a, "-", b, " weight-", myEdge.weight )
+
+    for x in sorted(graph.edges):
+        print(x, graph.edges[x])
+    #sort hash table
+
+    print(graph.distances.values())
+    print(graph.distances.keys())
+
+    print(dijkstra(graph, 1 in graph.nodes))
+
