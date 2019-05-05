@@ -3,6 +3,8 @@ import sys
 import unittest
 from collections import defaultdict
 import random
+import heapq
+import math
 def distance(x1, y1, x2, y2):
     dx = x2 - x1
     dy = y2 - y1
@@ -58,6 +60,23 @@ class DirectedEdge:
 
     def toVertex(self):
         return self.node2
+class DijkstrasSP:
+    def __init__(self, NumberOfVertices, Graph, startingNode):
+        edgeTo = [None] * NumberOfVertices
+        distTo = [math.inf] * NumberOfVertices
+        pq = heapq  # Binary heap PQ
+        PQnumber=0
+
+        distTo[startingNode] = 0
+        pq.heappush(startingNode,0)
+        PQnumber+=1
+        while(PQnumber>0):
+            v=pq.heappop()
+            
+
+
+
+
 
 if __name__ == '__main__':
     #UNIT TEST, have a seperate main function to test input 6 or something
@@ -88,6 +107,3 @@ if __name__ == '__main__':
 
 
 
-
-
-#
